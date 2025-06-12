@@ -1,5 +1,7 @@
 ﻿#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <string.h>
+
 
 // 배열을 전달받아서 배열의 모든 요소들의 내용을 출력하기
 // 함수로 배열을 전달할때는 반드시 배열의 시작 주소와 배열의 길이를 같이 전달해야한다.
@@ -11,6 +13,31 @@ void display_array(int p[], int count) {
     {
         printf("%d\t", p[i]);
     }
+    printf("\n");
+
+}
+
+void display_vertical (char sz[], int count) {
+
+    if (!sz || !count)
+        return;
+
+    for (int i = 0; i < count; i++) {
+        if (sz[i] >= 'a' && sz[i] <= 'z')
+            sz[i] -= 32;
+
+        printf("%c\n", sz[i]);
+    }
+}
+
+void display_vertical2(char sz[], int count) {
+    if (!sz || !count)
+        return;
+    for (int i = 0; i < count; i++) {
+        printf("%s\n", sz++); // sz라는 포인터값 자체를 변경
+        //printf("%s\n", sz + i); // sz를 기준으로 i만큼 이동시킨 임시변수에 넣어줌
+    }
+
     printf("\n");
 }
 
@@ -48,11 +75,11 @@ int main()
     int count = sizeof(arr) / sizeof(int); //갯수를 구함
     display_array(arr,count);
 
-    return 0;
-}
+    
+
 
 // 소문자를 대문자로 출력하는 함수를 작성하세요
-// char sz[] = abcde";
+    /*char sz[] = "abcde";*/
 /*
 A
 B
@@ -60,6 +87,9 @@ C
 D
 E
 */
+
+    
+    display_vertical(sz, sizeof(sz));
 
 // 다음과 같은 형식으로 출력되는 함수를 작성하세요
 // char sz[] = abcde";
@@ -71,4 +101,8 @@ de
 e
 */
 
-
+    display_vertical2(sz, sizeof(sz));
+    
+    
+    return 0;
+}
